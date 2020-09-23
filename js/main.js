@@ -4,10 +4,15 @@ console.log('OMG MineSweeper!');
 const MINE = '@';
 const EMPTY = ' ';
 
-var gBoard = buildBoard(4);
+var gBoard;
 
-setNegsMineCounter(gBoard);
-renderBoard(gBoard);
+function init() {
+    gBoard = buildBoard(4);
+    createRandMines(2);
+    setNegsMineCounter(gBoard);
+    renderBoard(gBoard);
+}
+
 
 function buildBoard(size) {
     var board = [];
@@ -23,28 +28,30 @@ function buildBoard(size) {
             board[i][j] = cell;
         }
     }
-    board[3][1].isMine = true;
-    board[2][2].isMine = true;
-    board[0][2].isMine = true;
+
+    // board[3][1].isMine = true;
+    // board[2][2].isMine = true;
+    // board[0][2].isMine = true;
 
     return board;
 }
 
 function renderBoard(board) {
     var strHTML = '';
+
     for (var i = 0; i < board.length; i++) {
         strHTML += '<tr>\n';
+        // createRandMines(num);
         for (var j = 0; j < board[0].length; j++) {
             var currCell = board[i][j];
-            var tdID = 'cell ' + i + '-' + j;
             var className = (currCell.isShown) ? 'shown' : 'hidden';
-            strHTML += '<td id="' + tdID + '"' + '" onclick="cellClicked(this)" ' +
+            strHTML += '<td onclick="cellClicked(this)" ' +
                 ' class="' + className + '"> <span class="td-text">' + currCell.mineNegsCount + '</span> </td>\n';
             if (className === 'shown') {
                 if (currCell.isMine) currCell = MINE;
                 else if (currCell.mineNegsCount > 0) currCell = currCell.mineNegsCount;
                 else currCell = EMPTY;
-            } 
+            }
         }
         strHTML += '</tr>\n';
     }
@@ -54,9 +61,18 @@ function renderBoard(board) {
 }
 
 function cellClicked(elCell) {
-        console.log('click!', elCell.classList);
-        elCell.classList = 'shown';
-    
+    console.log('click!', elCell);
+    elCell.classList = 'shown';
+
+}
+
+function createRandMines(num) {
+    var pos;
+    for (var i = 0; i < num; i++) {
+        pos = getRandPos(gBoard);
+        gBoard[pos.i][pos.j].isMine = true;
+        console.log(gBoard[pos.i][pos.j]);
+    }
 }
 
 function setNegsMineCounter(board) {
@@ -70,6 +86,7 @@ function setNegsMineCounter(board) {
             if (!currCell.isMine) {
                 var count = countNegMines(board, pos);
                 currCell.mineNegsCount = count;
+                if (count === 0) currCell.mineNegsCount = EMPTY;
             } else currCell.mineNegsCount = MINE;
         }
     }
