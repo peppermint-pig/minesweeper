@@ -19,3 +19,7 @@ td {
 .hidden {
     background-color: #2a9d8f;
 }
+
+.hidden .td-text {
+    visibility: hidden;
+}

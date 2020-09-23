@@ -38,9 +38,8 @@ function renderBoard(board) {
             var currCell = board[i][j];
             var tdID = 'cell ' + i + '-' + j;
             var className = (currCell.isShown) ? 'shown' : 'hidden';
-            console.log(currCell.mineNegsCount); 
             strHTML += '<td id="' + tdID + '"' + '" onclick="cellClicked(this)" ' +
-                ' class="' + className + '"> ' + currCell.mineNegsCount + ' </td>\n';
+                ' class="' + className + '"> <span class="td-text">' + currCell.mineNegsCount + '</span> </td>\n';
             if (className === 'shown') {
                 if (currCell.isMine) currCell = MINE;
                 else if (currCell.mineNegsCount > 0) currCell = currCell.mineNegsCount;
@@ -55,10 +54,9 @@ function renderBoard(board) {
 }
 
 function cellClicked(elCell) {
-    // if (elCell.classList === 'hidden') {
         console.log('click!', elCell.classList);
         elCell.classList = 'shown';
-    // }
+    
 }
 
 function setNegsMineCounter(board) {
