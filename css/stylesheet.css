@@ -1,25 +1,78 @@
+body {
+    background-color: #D1C0CF;
+}
 
-.game-board, table {
-    border:2px solid black;
+button {
+    padding: 10px;
+    text-align: center;
+    border: 2px solid #36453B;
+    border-radius: 25px;
+    background-color: #9EBC9E;
+    color: #36453B;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: large;
+    outline: none;
+}
+
+button:hover {
+    color: #985277;
+    background-color: #FFCFD2;
+    border-color: #985277;
+    outline: none;
+}
+
+button:active {
+    transform: translateY(3px);
+    outline: none;
+}
+
+.level-options {
+    color: #36453B;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: larger;
+    text-align: center;
+}
+
+table {
+    margin: 35px auto;
+    border:2px solid #36453B;
     border-collapse: collapse;
+    color: #381935;
 }
 td {
-    border:1px solid black;
+    border:1px solid #36453B;
     border-collapse: collapse;
     padding: 5px;
-    width: 20px;
-    height: 20px; 
+    width: 40px;
+    height: 40px; 
     text-align: center; 
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: #985277;
 }
 
 .shown {
-    background-color: #f4a261;
+    background-color: #FFCFD2;
 }
 
 .hidden {
-    background-color: #2a9d8f;
+    background-color: #9EBC9E;
 }
 
 .hidden .td-text {
     visibility: hidden;
+}
+
+.lose  {
+    text-align: center; 
+    font-family: 'Courier New', Courier, monospace;
+    color: #985277;
+    display: none;
+}
+
+.win {
+    text-align: center; 
+    font-family: 'Courier New', Courier, monospace;
+    color: #985277;
+    display: none;
 }

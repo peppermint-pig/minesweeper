@@ -21,3 +21,20 @@ function getRandomInt(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min);
  }
+
+ function pad(val) {
+  var valString = val + "";
+  if (valString.length < 2) {
+    return "0" + valString;
+  } else {
+    return valString;
+  }
+}
+
+var gStartTime = Date.now();
+setInterval(timeCount, 1000);
+function timeCount() {
+  var newTime = Date.now();
+  var difference = ((newTime - gStartTime) / 1000).toFixed(0);
+  gGame.secsPassed = difference;
+}
