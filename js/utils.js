@@ -1,5 +1,4 @@
 'use strict';
-console.log('some helpful stuff');
 
   function getRandPos(board) {
     var emptyPoses = [];

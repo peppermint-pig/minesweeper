@@ -22,6 +22,9 @@ function init(size = 4, mines = 2) {
     createRandMines(mines);
     setNegsMineCounter(gBoard);
     renderBoard(gBoard);
+    gGame.isOn = true;
+    gGame.shownCount = 0;
+    gGame.markedCount = 0;
     document.querySelector('.lose').style.display = 'none';
     document.querySelector('.win').style.display = 'none';
 }
@@ -83,6 +86,9 @@ function gameOver() {
     gGame.markedCount = 0;
     for (var i = 0; i < gBoard.length; i++) {
         for (var j  = 0; j < gBoard[i].length; j++) {
+            document.querySelector('#cell-'+i+'-'+j).classList.add('shown');
+            document.querySelector('#cell-'+i+'-'+j).classList.remove('hidden');
+            
         }
     }
 }
@@ -94,6 +100,7 @@ function checkVictory() {
         document.querySelector('.win').style.display = 'block';
         gGame.shownCount = 0;
         gGame.markedCount = 0;
+        gGame.isOn = false;
     }
 }
 
@@ -103,27 +110,40 @@ function openNegs (pos1, pos2) {
         for (var j = pos2 - 1; j <= pos2 + 1; j++) {
             var cell = gBoard[i][j];
             if (j < 0 || j >= gBoard[i].length) continue;
-            if (cell.mineNegsCount === 0) cell.classList = 'shown';
-            else cell.classList = 'hidden';
-            
+            if (cell.isMine || cell.isMarked) document.querySelector('#cell-'+i+'-'+j).classList.add('hidden');
+            else if (!cell.isShown) {
+                document.querySelector('#cell-'+i+'-'+j).classList.add('shown');
+                document.querySelector('#cell-'+i+'-'+j).classList.remove('hidden');
+                gGame.shownCount++;
+            }
         }
     }
 }
 
 function cellClicked(elCell, i, j) {
-    elCell.classList = 'shown';
-    gGame.shownCount++;
-    checkVictory();
-    if (gBoard[i][j].isMine) gameOver();
-    openNegs(i, j);
+    var clickedCell = gBoard[i][j];
+    if (gGame.isOn) {
+        openNegs(i, j);
+        gGame.shownCount++;
+        if (clickedCell.isMine) gameOver();
+        else if (clickedCell.mineNegsCount > 0) {
+            elCell.classList.add('shown');
+            elCell.classList.remove('hidden');
+        }
+        else if (clickedCell.mineNegsCount === EMPTY) openNegs(i, j);
+        checkVictory();
+    }
 }
 
 function cellMarked(elCell) {
-    elCell.isMarked = true;
-    if (elCell.isMarked) {
+    if (!elCell.isMarked) {
+        elCell.isMarked = true;
         elCell.innerHTML = MARK;
         gGame.markedCount++;
-    }
+    } else {
+        elCell.innerHTML = EMPTY;
+        gGame.markedCount--;
+    } 
     checkVictory();
 }
 
