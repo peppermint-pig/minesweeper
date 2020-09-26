@@ -6,6 +6,8 @@ body {
 }
 
 button {
+    margin-left: 7px;
+    margin-right: 7px;
     padding: 10px;
     text-align: center;
     border: 2px solid #36453B;
@@ -38,12 +40,12 @@ button:active {
 
 table {
     margin: 35px auto;
-    border:2px solid #36453B;
+    border:2px solid #43574a;
     border-collapse: collapse;
     color: #381935;
 }
 td {
-    border:1px solid #36453B;
+    border:2px solid #43574a;
     border-collapse: collapse;
     padding: 5px;
     width: 40px;
@@ -56,6 +58,7 @@ td {
 
 .shown {
     background-color: #FFCFD2;
+    border-color: #985277;
 }
 
 .hidden {

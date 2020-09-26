@@ -30,10 +30,12 @@ function getRandomInt(min, max) {
   }
 }
 
-var gStartTime = Date.now();
-setInterval(timeCount, 1000);
-function timeCount() {
-  var newTime = Date.now();
-  var difference = ((newTime - gStartTime) / 1000).toFixed(0);
-  gGame.secsPassed = difference;
+function countTime() {
+    if (gGame.isOn) {
+      gGame.secsPassed += 1;
+      if (gGame.secsPassed === 59) {
+        gGame.secsPassed = 0;
+        gGame.minsPassed = 1;
+      }
+    }
 }
