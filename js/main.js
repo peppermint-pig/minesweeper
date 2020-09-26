@@ -111,6 +111,7 @@ function gameOver() {
     gGame.shownCount = 0;
     gGame.markedCount = 0;
     gFirstClick = true;
+    clearInterval(gTimerInterval);
 }
 
 function checkVictory() {
@@ -121,6 +122,7 @@ function checkVictory() {
         gGame.shownCount = 0;
         gGame.markedCount = 0;
         gGame.isOn = false;
+        clearInterval(gTimerInterval);
     }
 }
 
@@ -187,15 +189,16 @@ function openNegs(pos1, pos2) {
                 var cell = gBoard[i][j];
                 if (j < 0 || j >= gBoard[i].length) continue;
                 if (cell.isMine || cell.isMarked || cell.isShown) continue;
-                else {
+                else if (cell.mineNegsCount > 0 || cell.mineNegsCount === EMPTY) {
                     cell.isShown = true;
                     document.querySelector('#cell-' + i + '-' + j).classList.add('shown');
                     document.querySelector('#cell-' + i + '-' + j).classList.remove('hidden');
                     gGame.shownCount++;
-                    // if (cell.mineNegsCount === EMPTY) {
-                    //     openNegs(j, i);
-                // }
+                    if (cell.mineNegsCount === EMPTY) {
+                        openNegs(i, j);
+                    }
                 }
+                console.log(cell);
             }
         }
     }
