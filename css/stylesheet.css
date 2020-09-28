@@ -38,7 +38,7 @@ button:active {
     text-align: center;
 }
 
-.game-info {
+.game-info h2 {
     display: inline;
     margin: 0 1em;
 }
