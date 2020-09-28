@@ -6,7 +6,7 @@
       for (var j = 1; j < board[i].length; j++) {
         var cell = gBoard[i][j];
         var pos = {i: i, j: j};
-        if (!cell.isMine) {
+        if (!cell.isMine && !cell.isShown) {
           emptyPoses.push(pos);
         }
       }

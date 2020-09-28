@@ -19,7 +19,7 @@ button {
     outline: none;
 }
 
-button:hover, button:focus {
+button:hover {
     color: #985277;
     background-color: #FFCFD2;
     border-color: #985277;
@@ -38,8 +38,28 @@ button:active {
     text-align: center;
 }
 
+.game-info {
+    display: inline;
+    margin: 0 1em;
+}
+
+.game-info {
+    margin: 2em 0;
+}
+
+#unicorn {
+    margin-bottom: 1em;
+    border: 2px solid #36453B;
+    border-radius: 50%;
+    padding: 20px;
+}
+
+.game-off {
+    background-color: #FFCFD2;
+}
+
 table {
-    margin: 35px auto;
+    margin: 1em auto;
     border:2px solid #43574a;
     border-collapse: collapse;
     color: #381935;
@@ -59,6 +79,11 @@ td {
 .shown {
     background-color: #FFCFD2;
     border-color: #985277;
+}
+
+.hit {
+    color: #FFCFD2;
+    background-color: #FFAFC5;
 }
 
 .hidden {
@@ -87,4 +112,8 @@ td.hidden:hover {
     font-family: 'Courier New', Courier, monospace;
     color: #985277;
     display: none;
+}
+
+.heart {
+    margin: 10px;
 }

@@ -11,18 +11,20 @@
 
 <body onload="init()">
     <h1>Minesweeper</h1>
-    <div class="level-options">
+    <div class="level-options" onmousedown="tenseUnicorn()" onmouseup="regUnicorn()">
         <h3>How bad do you want it?</h3>
         <button id="easy" onclick="chooseLevel(this.id)">Easy</button>
         <button id="medium" onclick="chooseLevel(this.id)">Intermediate</button>
         <button id="hard" onclick="chooseLevel(this.id)">Hard</button>
     </div>
-    <h2 class="timer">00:00</h2>
-    <!-- <div class="timer">
-        <h2><span id="mins">00</span>:<span id="secs">00</span></h2>
-    </div> -->
+    <div class="game-info">
+        <h2>Mines:<span class="mines">0</span></h2>
+        <h2 class="timer">00:00</h2>
+        <button id="unicorn" onclick="init(gLevel.size)"></button>
+    </div>
+    <div class="lives"></div>
     <table>
-        <tbody class="game-board"></tbody>
+        <tbody class="game-board" onmousedown="tenseUnicorn()" onmouseup="regUnicorn()"></tbody>
     </table>
     <h1 class="lose">☠️ Oh No! You've Lost! ☠️</h1>
     <h1 class="win">🎉 Hurray! You've Won 🎉</h1>
