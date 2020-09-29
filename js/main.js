@@ -220,7 +220,7 @@ function markCell(elCell, event, i, j) {
             gMineCounter--;
             document.querySelector('.mines').innerHTML = gMineCounter;
         } else {
-            elCell.innerHTML = clickedCell.mineNegsCount;
+            elCell.innerHTML = EMPTY;
             clickedCell.isMarked = false;
             gGame.markedCount--;
             gMineCounter++;
